@@ -1,0 +1,35 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: MuonDVN
+    network: {{ network }}
+    source:
+      address: "{{ address }}"
+      abi: MuonDVN
+      startBlock: {{ startBlock }}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - JobAssigned
+        - RoleAdminChanged
+        - RoleGranted
+        - RoleRevoked
+      abis:
+        - name: MuonDVN
+          file: ./abis/MuonDVN.json
+      eventHandlers:
+        - event: JobAssigned(uint256)
+          handler: handleJobAssigned
+        - event: RoleAdminChanged(indexed bytes32,indexed bytes32,indexed bytes32)
+          handler: handleRoleAdminChanged
+        - event: RoleGranted(indexed bytes32,indexed address,indexed address)
+          handler: handleRoleGranted
+        - event: RoleRevoked(indexed bytes32,indexed address,indexed address)
+          handler: handleRoleRevoked
+      file: ./src/muon-dvn.ts

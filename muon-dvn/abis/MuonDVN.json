@@ -1,0 +1,399 @@
+[
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "_muonAppId", "type": "uint256" },
+      {
+        "components": [
+          { "internalType": "uint256", "name": "x", "type": "uint256" },
+          { "internalType": "uint8", "name": "parity", "type": "uint8" }
+        ],
+        "internalType": "struct IMuonClient.PublicKey",
+        "name": "_muonPublicKey",
+        "type": "tuple"
+      },
+      { "internalType": "address", "name": "_muon", "type": "address" },
+      {
+        "internalType": "address",
+        "name": "_layerZeroEndpointV2",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  { "inputs": [], "name": "AccessControlBadConfirmation", "type": "error" },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "account", "type": "address" },
+      { "internalType": "bytes32", "name": "neededRole", "type": "bytes32" }
+    ],
+    "name": "AccessControlUnauthorizedAccount",
+    "type": "error"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "jobId",
+        "type": "uint256"
+      }
+    ],
+    "name": "JobAssigned",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "role",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "previousAdminRole",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "newAdminRole",
+        "type": "bytes32"
+      }
+    ],
+    "name": "RoleAdminChanged",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "role",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "sender",
+        "type": "address"
+      }
+    ],
+    "name": "RoleGranted",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "role",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "sender",
+        "type": "address"
+      }
+    ],
+    "name": "RoleRevoked",
+    "type": "event"
+  },
+  {
+    "inputs": [],
+    "name": "ADMIN_ROLE",
+    "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "DEFAULT_ADMIN_ROLE",
+    "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          { "internalType": "uint32", "name": "dstEid", "type": "uint32" },
+          { "internalType": "bytes", "name": "packetHeader", "type": "bytes" },
+          {
+            "internalType": "bytes32",
+            "name": "payloadHash",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint64",
+            "name": "confirmations",
+            "type": "uint64"
+          },
+          { "internalType": "address", "name": "sender", "type": "address" }
+        ],
+        "internalType": "struct ILayerZeroDVN.AssignJobParam",
+        "name": "_param",
+        "type": "tuple"
+      },
+      { "internalType": "bytes", "name": "_options", "type": "bytes" }
+    ],
+    "name": "assignJob",
+    "outputs": [
+      { "internalType": "uint256", "name": "_fee", "type": "uint256" }
+    ],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "fee",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint32", "name": "_dstEid", "type": "uint32" },
+      { "internalType": "uint64", "name": "_confirmations", "type": "uint64" },
+      { "internalType": "address", "name": "_sender", "type": "address" },
+      { "internalType": "bytes", "name": "_options", "type": "bytes" }
+    ],
+    "name": "getFee",
+    "outputs": [
+      { "internalType": "uint256", "name": "_fee", "type": "uint256" }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "bytes32", "name": "role", "type": "bytes32" }
+    ],
+    "name": "getRoleAdmin",
+    "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+      { "internalType": "address", "name": "account", "type": "address" }
+    ],
+    "name": "grantRole",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+      { "internalType": "address", "name": "account", "type": "address" }
+    ],
+    "name": "hasRole",
+    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "name": "jobs",
+    "outputs": [
+      { "internalType": "address", "name": "origin", "type": "address" },
+      { "internalType": "uint32", "name": "dstEid", "type": "uint32" },
+      { "internalType": "bytes", "name": "packetHeader", "type": "bytes" },
+      { "internalType": "bytes32", "name": "payloadHash", "type": "bytes32" },
+      { "internalType": "uint64", "name": "confirmations", "type": "uint64" },
+      { "internalType": "address", "name": "sender", "type": "address" },
+      { "internalType": "bytes", "name": "options", "type": "bytes" }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "layerZeroEndpointV2",
+    "outputs": [
+      {
+        "internalType": "contract ILayerZeroEndpointV2",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "muon",
+    "outputs": [
+      { "internalType": "contract IMuonClient", "name": "", "type": "address" }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "muonAppId",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "muonPublicKey",
+    "outputs": [
+      { "internalType": "uint256", "name": "x", "type": "uint256" },
+      { "internalType": "uint8", "name": "parity", "type": "uint8" }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "muonValidGateway",
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+      {
+        "internalType": "address",
+        "name": "callerConfirmation",
+        "type": "address"
+      }
+    ],
+    "name": "renounceRole",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+      { "internalType": "address", "name": "account", "type": "address" }
+    ],
+    "name": "revokeRole",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "_muonAppId", "type": "uint256" }
+    ],
+    "name": "setMuonAppId",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "addr", "type": "address" }
+    ],
+    "name": "setMuonContract",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_gatewayAddress",
+        "type": "address"
+      }
+    ],
+    "name": "setMuonGateway",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          { "internalType": "uint256", "name": "x", "type": "uint256" },
+          { "internalType": "uint8", "name": "parity", "type": "uint8" }
+        ],
+        "internalType": "struct IMuonClient.PublicKey",
+        "name": "_muonPublicKey",
+        "type": "tuple"
+      }
+    ],
+    "name": "setMuonPubKey",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "uint32", "name": "", "type": "uint32" }],
+    "name": "supportedDstChain",
+    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "bytes4", "name": "interfaceId", "type": "bytes4" }
+    ],
+    "name": "supportsInterface",
+    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint32", "name": "eid", "type": "uint32" },
+      { "internalType": "bool", "name": "status", "type": "bool" }
+    ],
+    "name": "updateSupportedDstChain",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint32", "name": "_srcEid", "type": "uint32" },
+      { "internalType": "address", "name": "_receiver", "type": "address" },
+      { "internalType": "bytes", "name": "_packetHeader", "type": "bytes" },
+      { "internalType": "bytes32", "name": "_payloadHash", "type": "bytes32" },
+      { "internalType": "uint64", "name": "_confirmations", "type": "uint64" },
+      { "internalType": "bytes", "name": "_reqId", "type": "bytes" },
+      {
+        "components": [
+          { "internalType": "uint256", "name": "signature", "type": "uint256" },
+          { "internalType": "address", "name": "owner", "type": "address" },
+          { "internalType": "address", "name": "nonce", "type": "address" }
+        ],
+        "internalType": "struct IMuonClient.SchnorrSign",
+        "name": "_signature",
+        "type": "tuple"
+      }
+    ],
+    "name": "verify",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+]
