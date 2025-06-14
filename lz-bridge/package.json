@@ -1,0 +1,24 @@
+{
+  "name": "lz-bridge",
+  "license": "UNLICENSED",
+  "scripts": {
+    "codegen": "graph codegen",
+    "build": "graph build",
+    "deploy:bsctest": "graph deploy --node https://api.studio.thegraph.com/deploy/ lz-bridge-bsctest",
+    "deploy:fuji": "graph deploy --node https://api.studio.thegraph.com/deploy/ lz-bridge-fuji",
+    "create-local": "graph create --node http://localhost:8020/ lz-bridge",
+    "remove-local": "graph remove --node http://localhost:8020/ lz-bridge",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 lz-bridge",
+    "prepare:bsctest": "mustache config/bsctest.json template.yaml > subgraph.yaml",
+    "prepare:fuji": "mustache config/fuji.json template.yaml > subgraph.yaml",
+    "test": "graph test"
+  },
+  "dependencies": {
+    "@graphprotocol/graph-cli": "^0.67.4",
+    "@graphprotocol/graph-ts": "0.32.0",
+    "mustache": "^4.2.0"
+  },
+  "devDependencies": {
+    "matchstick-as": "0.5.0"
+  }
+}

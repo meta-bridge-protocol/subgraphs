@@ -1,0 +1,44 @@
+specVersion: 1.2.0
+indexerHints:
+  prune: never
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: LayerZeroBridge
+    network: fuji
+    source:
+      address: "0xA5356D9a10666dBAC495fb085c19796BFdE4f929"
+      abi: LayerZeroBridge
+      startBlock: 41215918
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - RoleAdminChanged
+        - RoleGranted
+        - RoleRevoked
+        - TokenAdd
+        - TokenRemove
+        - TokenSent
+        - TokenUpdate
+      abis:
+        - name: LayerZeroBridge
+          file: ./abis/LayerZeroBridge.json
+      eventHandlers:
+        - event: RoleAdminChanged(indexed bytes32,indexed bytes32,indexed bytes32)
+          handler: handleRoleAdminChanged
+        - event: RoleGranted(indexed bytes32,indexed address,indexed address)
+          handler: handleRoleGranted
+        - event: RoleRevoked(indexed bytes32,indexed address,indexed address)
+          handler: handleRoleRevoked
+        - event: TokenAdd(indexed address,indexed uint256)
+          handler: handleTokenAdd
+        - event: TokenRemove(indexed address)
+          handler: handleTokenRemove
+        - event: TokenSent(indexed address,indexed uint32,indexed address,uint256,uint256)
+          handler: handleTokenSent
+        - event: TokenUpdate(indexed address)
+          handler: handleTokenUpdate
+      file: ./src/layer-zero-bridge.ts
