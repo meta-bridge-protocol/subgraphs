@@ -30,6 +30,7 @@ type RoleRevoked @entity(immutable: true) {
 
 type Token @entity {
   id: String!
+  deployer: Bytes! # address of deployer
   tokenAddress: Bytes! # address
   tokenId: BigInt! # uint256
   mbToken: Bytes! # address of mbToken

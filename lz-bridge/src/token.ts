@@ -38,6 +38,7 @@ export function addToken(
 
   let data = contract.tokens(tokenId)
 
+  token.deployer = event.transaction.from;
   token.tokenAddress = data.getNativeToken();
   token.mbToken = data.getMbToken();
   token.gateway = data.getGateway();
